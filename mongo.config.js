@@ -9,8 +9,8 @@ const options = {
 };
 
 exports.mongoConnect = async (refs = {
-  db: 'lit-course',
-  collection: 'lit-data'
+  db: 'lit-data',
+  collection: 'admin-vacation-form'
 }) => {
   return mongo.connect(url, options).then(client => {
     const collection = client.db(refs.db).collection(refs.collection);
