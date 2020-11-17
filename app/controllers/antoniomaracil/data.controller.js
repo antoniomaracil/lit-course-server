@@ -50,3 +50,21 @@ exports.getFiles = async (req, res) => {
     res.status(500).send();
   }
 };
+
+exports.deleteFile = async (req, res) => {
+  const id = req.params.id;
+  const mongo = await mongoConnect({ db: 'lit-data', collection: 'document-list' });
+
+  if (mongo.client) {
+    mongo.collection.deleteOne({ _id: ObjectID(id) }).then(item => {
+      if (item) {
+        res.send({ result: item.result });
+      }
+      mongo.client.close();
+    }).catch(() => {
+      mongo.client.close();
+    });
+  } else {
+    res.status(500).send();
+  }
+};
