@@ -98,6 +98,26 @@ const empData = [
     status: 0,
     statusDate: new Date(2020, 11, 20)
   }];
+const empDocument = [
+  {
+    id: 1,
+    name: 'Antonio_Martin_CV',
+    uploadDate: new Date(2020, 10, 5),
+    path: 'assets/antoniomaracil/Antonio_Martin_CV.pdf'
+  },
+  {
+    id: 2,
+    name: 'Informe_20/20',
+    uploadDate: new Date(2020, 10, 10),
+    path: 'assets/antoniomaracil/Informe_Económico.pdf'
+  },
+  {
+    id: 3,
+    name: 'Presentación_reunión',
+    uploadDate: new Date(2020, 10, 10),
+    path: 'assets/antoniomaracil/presentacion.potx'
+  }
+];
 
 const mongo = require('mongodb').MongoClient;
 
@@ -114,6 +134,17 @@ mongo.connect(url, options).then(client => {
   const collection = client.db('lit-data').collection('admin-vacation-form');
 
   collection.insertMany(empData).then(() => {
+    client.close();
+  }).catch(() => {
+    client.close();
+  });
+}).catch(() => {
+});
+
+mongo.connect(url, options).then(client => {
+  const collection = client.db('lit-data').collection('document-list');
+
+  collection.insertMany(empDocument).then(() => {
     client.close();
   }).catch(() => {
     client.close();
