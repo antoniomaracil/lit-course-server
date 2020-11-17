@@ -1,6 +1,7 @@
 module.exports = (app) => {
   const validator = require('../controllers/antoniomaracil/data.controller');
 
-  app.get('/get-data', validator.getItems);
-  app.put('/update-data', validator.updateItem);
+  app.get('/get-vacations', validator.getVacations);
+  app.put('/update-vacation', validator.updateVacation);
+  app.get('/get-files', validator.getFiles);
 };
